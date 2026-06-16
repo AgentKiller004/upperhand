@@ -1,0 +1,84 @@
+import random
+
+Cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+
+random.shuffle(Cards)
+
+
+p_1 = [Cards.pop(), Cards.pop()]
+p_2 = [Cards.pop(), Cards.pop()]
+
+print("Player 1:", p_1)
+print("Player 2:", "*" ,p_2[1])
+
+a=0
+b=0
+action2 =""
+global action1
+def p1():
+    if b==1:
+        return
+    else:
+        action1 = input("Player 1, do you want to hit or stay? (h/s): ")
+        if action1.lower() == 'h':
+            p_1.append(Cards.pop())
+            print("Player 1 draws a card:", p_1[-1])
+            a=0
+            p2()
+        else:
+            print("Player 1 stays with total:", p1_total)
+            a=1
+            p2()
+
+def p2():
+    if a==1:
+        if p2_total <= 17:
+            p2.append(Cards.pop())
+            print("Player 2 draws a card:", p2[-1])
+            action2 = "h"
+            p1()
+        else:
+            print("Player 2 stays with total:", p2_total)
+            b=1
+            action2 = "s"
+            p1()
+    elif p2_total <= 17:
+        p_2.append(Cards.pop())
+        print("Player 2 draws a card:", p_2[-1])
+        action2 = "h"
+        p1()
+    else:
+        print("Player 2 stays with total:", p2_total)
+        action2= "s"
+        p1()
+
+while True:
+    p1_total = sum(p_1)
+    p2_total = sum(p_2)
+
+    if p1_total > 21:
+        print("Player 1 busts! Player 2 wins!")
+        break
+    elif p2_total > 21:
+        print("Player 2 busts! Player 1 wins!")
+        break
+
+    if p1_total == 21:
+        print("Player 1 has Blackjack! Player 1 wins!")
+        break
+    elif p2_total == 21:
+        print("Player 2 has Blackjack! Player 2 wins!")
+        break
+
+    p1()
+
+
+    if action1.lower() == 's' and action2.lower() == 's':
+        if p1_total > p2_total:
+            print("Player 1 wins with total:", p1_total)
+        elif p2_total > p1_total:
+            print("Player 2 wins with total:", p2_total)
+        else:
+            print("It's a tie!")
+        break
