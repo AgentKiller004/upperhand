@@ -42,26 +42,6 @@ while running:
     keys = pygame.key.get_pressed()
 
     
-    player.update(dt, keys, enemies_group)
-    enemies_group.update(dt)
-
-    
-    handle_attack(player, enemies_group, grp)
-
-    # Tell pyscroll to center the camera on the player
-    grp.center(player.rect.center)
-    # display
-    screen.fill((0, 0, 0))
-    
-    mx, my = pygame.mouse.get_pos()
-    target_x = (player.rect.centerx + (mx + grp.view.x)) / 2
-    target_y = (player.rect.centery + (my + grp.view.y)) / 2
-
-# Tell pyscroll to follow that halfway point
-    grp.center((target_x, target_y))
-
-    grp.draw(screen)
-    
     # control
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -72,12 +52,17 @@ while running:
 
     keys = pygame.key.get_pressed()
 
-    # Update logic manually (keeps it clean)
     player.update(dt, keys, enemies_group)
     enemies_group.update(dt)
 
-    # Tell pyscroll to center the camera on the player
-    grp.center(player.rect.center)
+    handle_attack(player, enemies_group, grp)
+
+    mx, my = pygame.mouse.get_pos()
+    target_x = (player.rect.centerx + (mx + grp.view.x)) / 2
+    target_y = (player.rect.centery + (my + grp.view.y)) / 2
+
+    # Tell pyscroll to follow that halfway point
+    grp.center((target_x, target_y))
 
     # display
     screen.fill((0, 0, 0))
