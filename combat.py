@@ -49,9 +49,7 @@ def handle_attack(player, enemies_group, grp):
                 sword_rect.bottom = player.rect.top
                 sword_rect.centerx = player.rect.centerx
         
-        
-                    
-                
-    
-    
-    
+        # 6. Check for collisions between sword and enemies
+        for enemy in list(enemies_group):
+            if sword_rect.colliderect(enemy.rect):
+                enemy.kill() # Instantly kill the enemy upon hit

@@ -1,6 +1,9 @@
 import random
 
-Cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+# Creating a full standard deck of 52 cards for Blackjack
+# 4 suits, each containing values 2-10, plus J, Q, K (all 10), and A (11)
+deck_base = [2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11]
+Cards = deck_base * 4
 
 random.shuffle(Cards)
 p1 = [Cards.pop(), Cards.pop()]
